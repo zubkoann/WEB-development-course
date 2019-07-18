@@ -16,3 +16,4 @@ result.forEach(el =>{
     li.innerText = el;
     ul.appendChild(li);
 })
+
