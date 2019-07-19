@@ -17,4 +17,27 @@ function getMatrix(number_floors, number_flat){
     }
    return matrix;
 }
-console.log(getMatrix(number_floors, number_flat));
+let matrix = getMatrix(number_floors, number_flat);
+
+function totalSum(matrix){
+let exepts = [];
+let summ =0;
+for (i=0; i<matrix.length; i++){
+    matrix[i].forEach(function(currentValue, index) {
+    if (currentValue ==0){ 
+        exepts.push(index); return false;
+    } else{
+        if (exepts.length>0){
+        exepts.forEach(exept=>{ 
+            if(exept == index) return false;
+            else  summ += currentValue;
+        });
+    }else summ += currentValue;
+    }
+  });
+};
+  console.log(matrix);
+  console.log(exepts);
+  console.log(summ);
+}
+totalSum(matrix)
