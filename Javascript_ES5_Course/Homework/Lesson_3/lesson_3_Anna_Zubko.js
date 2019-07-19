@@ -6,18 +6,14 @@ function getH2innerText(htmlContent){
 const reg = /<h2[^>]*>(.*?)<\/h2>/g;
 let result = [];
 let match;
-while(match=reg.exec(htmlContent))
-{
-result.push(match[1]);
+while(match=reg.exec(htmlContent)){
+result.push(match[1].replace(/(<.*>\s)/, ""));
 }
-let ul = document.createElement('ul');
-document.body.appendChild(ul);
-
+var innerHTMLtext = '<ul>'
 result.forEach(el =>{
-    let li = document.createElement('li');
-    li.innerText = el;
-    ul.appendChild(li);
+    innerHTMLtext += `<li>${el}</li>`;
 })
-console.log(ul)
+innerHTMLtext += '</ul>';
+return  innerHTMLtext;
 }
 getH2innerText(htmlContent)
