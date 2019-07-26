@@ -24,20 +24,20 @@ let exepts = [];
 let summ =0;
 for (i=0; i<matrix.length; i++){
     matrix[i].forEach(function(currentValue, index) {
-    if (currentValue ==0){ 
-        exepts.push(index); return false;
+    if (currentValue == 0){ 
+        exepts.push(index); 
     } else{
         if (exepts.length>0){
-        exepts.forEach(exept=>{ 
-            if(exept == index) return false;
-            else  summ += currentValue;
-        });
-    }else summ += currentValue;
+            let exeptFl=0;
+            exepts.forEach(exept=>{ 
+            if(exept == index) exeptFl = 1;
+          });
+          if (exeptFl==0) summ += currentValue;
+        } else{ summ += currentValue;}
     }
   });
 };
   console.log(matrix);
-  console.log(exepts);
   console.log(summ);
 }
 totalSum(matrix)
