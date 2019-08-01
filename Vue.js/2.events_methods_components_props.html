@@ -8,11 +8,12 @@
 <div id="app">
     <h1>Componets</h1>
 
-    <counter :add-num="10"></counter>
+    <counter :add-num="10"></counter>   <!-- property  -->
 
     <counter :add-num="20"></counter>
 
-    <counter></counter>
+    <counter></counter>      <!-- рендерим компонент -->
+
 
 </div>
 </body>
@@ -21,21 +22,22 @@
 <script>
 
 
-    var counter = {
-        // props: ['addNum'],
-        props: {
-            addNum : {
-                type: Number,
+    var counter = { // тоже вью инстанс можно локально подключить а можно глобально
+        // props: ['addNum'],// быстрое определение
+        props: { // описываем переданное свойства 
+            addNum : {// add-num необходимо трансформировать , можем обращаться через this
+                type: Number, // тип , если прийдет строка трансформирует в  Number
                 default: 1
             }
         },
-        data() {
+        data() {  // тоже есть  но является  функции так как должна что-то возращать
             return {
                 count: 0,
                 localAddNum : 1
             }
         },
-        template:  `
+        template: // шаблон
+         `
         <div>
           <div>Count: {{this.count}} Incremented by {{ localAddNum }}</div>
           <button class="vue-btn" @click="increment">Increment by 1</button>
@@ -50,21 +52,23 @@
                 this.localAddNum = 100;
             }
         },
-        mounted(){
+        mounted(){//хук
             this.localAddNum = this.addNum
         }
     };
 
-    Vue.component('counter', counter);
+    Vue.component('counter', counter); // подключаем глобально
 
 
-    var app = new Vue({
+    var app = new Vue({//
         el: '#app',
-        data: {
+        data: {//указываем любые свойства
+            text: 'hello'
 
         },
-        components: {
-            counter
+        components: { //в компоненте подключаем компонент
+            counter,  //переменная в которой будем использовать компонент локалльное подключение
+            counter111:counter  //можно переименовать
         }
     });
 

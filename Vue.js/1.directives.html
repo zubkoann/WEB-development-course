@@ -7,32 +7,31 @@
 <body>
 <div id="app">
     <h1>My Vue app</h1>
-    <p>{{ text }}</p>
-    <img :src="imageSource"
-         :title="text">
+    <p>{{ text }}</p><!-- выводим данные из data , использовать из data :src или v-bind:src, -->
+     <img :src="imageSource " 
+         :title="text"><!-- использовать из data :title нельзя {{ text }}   -->
 
     <div :title="randNum"
-         v-if="shown">
+         v-if="shown"><!-- использовать из data shown: false  -->
         Hover over me for your random number!
     </div>
     <div v-else>
         Alternative text
     </div>
 
-    <p v-html="message"></p>
+    <p v-html="message"></p><!-- использовать из data если надо вставить html -->
 
     <ul>
-        <template v-for="color in colors">
+        <template v-for="color in colors"> <!--colors свойство в data  -->
             <li v-if="color.primary"
             >{{ color.text }}</li>
             <li v-if="color.primary"
-                @click="showColor(color.text)"
-            >hardcoded text</li>
-        </template>
+                @click="showColor(color.text)"  
+            >hardcoded text</li> 
     </ul>
 
     <p>
-        <button @click="reveal">Reveal the Secret Number</button>
+        <button @click="reveal">Reveal the Secret Number</button> <!--вешаем событие  -->
     </p>
 
 
@@ -47,7 +46,7 @@
     var app = new Vue({
         el: '#app',
         data: {
-            text: 'Hello World',
+            text: 'Hello World',//указываем любые свойства
             imageSource: 'http://via.placeholder.com/350x150',
             randNum: Math.floor(Math.random() * 50) + 1,
             shown: false,
@@ -76,7 +75,7 @@
                 }
             ]
         },
-        methods: {
+        methods: { //указываем функции
             reveal() {
                 alert(`Here's the secret number: ${this.randNum}`)
             },
