@@ -21,10 +21,11 @@
     <input
             type="text"
             placeholder="text..."
-            v-model="text"
-    >
+            v-model="text"  
+    ><!--v-model директива для двухстороннего связывания  как value мы ее биндим с локальным свойством data-->
     <p :class="{ active: person.isActive }">Original text: {{ text }}</p>
-    <p :class="{ active: person.isActive, inactive: !person.isActive }">Lowercase text: {{ lowerText }}</p>
+     <p :class="{ active: person.isActive, inactive: !person.isActive }">Lowercase text: {{ lowerText }}</p> 
+     <!--вычисляемые свойства не можем передать данные-->
     <p :class="person.isActive ? 'active' : 'inactive'">Lowercase text: {{ lowerText }}</p>
 
     <p :style="style">Original text: {{ text }}</p>
@@ -92,7 +93,7 @@
                 fontSize: '40px'
             }
         },
-        computed: {
+        computed: { // вычисляемые свойства для изменения данных вводимых
             lowerText() {
                 return this.text.toLowerCase()
             }
@@ -100,16 +101,17 @@
         components: {
             counter
         },
-        beforeCreate(){
+        // хук функция которая выполняется при  наступление определенного события 
+        beforeCreate(){// перед созданием выполнить
             console.log('beforeCreate', this.text)
         },
-        created(){
+        created(){// после создания 
             console.log('created', this.text)
         },
-        mounted(){
+        mounted(){ // смонтирован на странице 
             console.log('mounted', this.text)
         },
-        updated(){
+        updated(){// при изменении данных на странице
             console.log('updated', this.text)
         },
         filters: {
