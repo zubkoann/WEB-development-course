@@ -8,14 +8,12 @@
 <div id="app">
     <h1>{{ 'Computed properties' | capitalize }}</h1>
 
-
     <counter>
+        <!-- там где написано slot выведется все то что передано компонентой можно именовать какой элемент передать в конкретный slot  -->
         <h3 slot="header">Outer head</h3>
         <p slot="footer">Outer text</p>
         aqweertyuio
     </counter>
-
-
 
     <p>Change the text</p>
     <input
@@ -24,17 +22,14 @@
             v-model="text"  
     ><!--v-model директива для двухстороннего связывания  как value мы ее биндим с локальным свойством data-->
     <p :class="{ active: person.isActive }">Original text: {{ text }}</p>
+    <!-- ставим класс active если в свойстве person.isActive = true-->
      <p :class="{ active: person.isActive, inactive: !person.isActive }">Lowercase text: {{ lowerText }}</p> 
-     <!--вычисляемые свойства не можем передать данные-->
+     <!--вычисляемые свойства не можем передать данные lowerText-->
     <p :class="person.isActive ? 'active' : 'inactive'">Lowercase text: {{ lowerText }}</p>
-
+    <!-- добавляем инлайновый стиль  -->
     <p :style="style">Original text: {{ text }}</p>
-
+    <!-- передаем класс  defaultClass и используем фильтр первым в фильтр передается по умолчанию валью потом все остальное-->
     <h2 :class="defaultClass | capitalize">{{ text | capitalize | changestring(3) }}</h2>
-
-
-
-
 </div>
 </body>
 </html>
@@ -43,12 +38,12 @@
 
 
     var counter = {
-
         data() {
             return {
                 count: 0,
             }
         },
+        // там где написано slot выведется все то что передано компонентой можно именовать какой элемент передать в конкретный slot 
         template:  `
         <div>
           <slot name="header"></slot>
@@ -73,6 +68,7 @@
 
     Vue.component('counter', counter);
 
+// фильтр можно использовать как глобально так и локально. Ему все равно что преобразовывать
     // Vue.filter('capitalize', function (value) {
     //     if(!value) return ''
     //     value = value.toString();
@@ -114,7 +110,7 @@
         updated(){// при изменении данных на странице
             console.log('updated', this.text)
         },
-        filters: {
+        filters: {// фильтр можно использовать как глобально так и локально
             capitalize: function (value) {
                 if(!value) return ''
 
