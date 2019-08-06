@@ -1,3 +1,4 @@
+// компонента должна быть завернута внутри может быть только один блок
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
@@ -44,7 +45,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!--scoped означает что стили применяются только к внутри компоненты Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 h3 {
   margin: 40px 0 0;

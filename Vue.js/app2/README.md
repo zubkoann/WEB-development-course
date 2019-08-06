@@ -1,6 +1,12 @@
-#npm i -g @vue/cli
+#npm i -g @vue/cli 
 # vue create app2 создаем папку и приложение
-# добавляем  babel css  
+# добавляем  babel css 
+# .env для создания параметров для среды разработки можно 
+# потом засетить process.env.VUE_APP_URL потом в компоненте #.env.development или  .env.production
+# vue inspect > output.js посмотреть конфигурации вэбпак
+# vue inspect > output.js --mode=production посмотреть 
+#конфигурации вэбпак
+
 
 # app2
 
