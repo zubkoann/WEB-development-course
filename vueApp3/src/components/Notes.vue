@@ -1,15 +1,13 @@
 <template>
   <div class="container">
     <h1>{{ title }}</h1>
-    <div class="alert alert-primary" role="alert">
-      You have {{notes.length}} notes!
-    </div>
-
-    <form action="#" style="margin: 15px 0">
-      <div class="form-group">
+    <h2>I have <span class="badge badge-secondary">{{notes.length}} </span> notes!</h2>
+   
+<form class="my-5">
+      <div class="form-group my-3" >
         <label for="title">Note title</label>
         <input
-                @keyup = "isTitleValid"
+                @keyup = "titleValidation"
                 type="text"
                 id = "title"
                 placeholder="Title"
@@ -18,27 +16,27 @@
                                      'is-invalid': titleState.changed && !titleState.valid }"
                 v-model="note.title" />
         <div class="alert alert-danger" role="alert" v-if="titleState.changed && !titleState.valid">
-          Title must contain at least 3 letters and start with the capital letter
+          Title doesn't  contain  5 and more letters and start with the capital letter
         </div>
       </div>
       <div class="form-group">
         <label for="text">Note text</label>
         <input
-                @keyup = "isTextValid"
+                @keyup = "textValidation"
                 type="text"
-                placeholder="Text"
+                placeholder="Text of Note"
                 class="form-control"
                 :class="{ 'is-valid': textState.changed && textState.valid,
                                      'is-invalid': textState.changed && !textState.valid }"
                 v-model="note.text" />
         <div class="alert alert-danger" role="alert" v-if="textState.changed && !textState.valid">
-          Note text must contain at least 3 words
+          Note doesn't  contain  5 and more  words and start with the capital letter
         </div>
       </div>
       <div class="form-group">
         <label for="email">E-mail</label>
         <input
-                @keyup = "isEmailValid"
+                @keyup = "emailValidation"
                 type="text"
                 placeholder="Email"
                 class="form-control"
@@ -51,48 +49,52 @@
       </div>
       <button
               type="button"
-              class="btn"
-              :class = "formDisabled ? 'btn-secondary' : 'btn-primary'"
-              :disabled = "formDisabled"
+              class="btn col-12 btn-lg"
+              :class = "btnDisabled ? 'btn-secondary' : 'btn-success'"
+              :disabled = "btnDisabled"
               @click = "addNote"
       >
         Submit
       </button>
+</form>
 
-    </form>
-    <div class="btn-group" role="group">
+ <div class="d-flex flex-row-reverse mb-3" >
       <button type="button"
               @click="sortNotes('date')"
               :class="(sortedBy === 'date') ? 'btn-primary' : 'btn-secondary'"
-              class="btn">Sort By Date</button>
+              class="btn btn-lg mx-1">Sort By Date</button>
       <button type="button"
               @click="sortNotes('title')"
               :class="(sortedBy === 'title') ? 'btn-primary' : 'btn-secondary'"
-              class="btn">Sort By Title</button>
-    </div>
-    <div class="container">
-      <div class="card" v-for="(note, index) in sortedNotes">
+              class="btn btn-lg mx-1">Sort By Title</button>
+  </div>
+
+    <div class="container px-0">
+      <div class="card my-3 shadow"  v-for="(note, index) in sortedNotes">
         <h5 class="card-header">{{note.date | formatDate}}</h5>
         <div class="card-body">
           <h3 class="card-title">{{note.title}}</h3>
           <p class="card-text">{{note.text}}</p>
-          <div class="card-body" role="alert">
+          <div>
             Author: <a href="#" class="alert-link">{{note.email}}</a>.
           </div>
-          <div class="col-6">
+          <div class="d-flex flex-row-reverse ">
+               <button
+                    type="button"
+                    class="btn btn-outline-danger mx-1"
+                    @click = "removeNote(index)">Delete </button>
             <button
                     type="button"
-                    class="btn btn-primary"
-                    @click = "copyNote(index)">Copy Note</button>
-            <button
-                    type="button"
-                    class="btn btn-danger"
-                    @click = "removeNote(index)">Delete Note</button>
+                    class="btn btn-outline-primary mx-1"
+                    @click = "copyNote(index)">Copy </button>
+         
           </div>
         </div>
       </div>
+    </div>    
+    
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -100,7 +102,7 @@ export default {
   name: 'Notes',
   data() {
     return {
-      title: 'Notes',
+      title: 'Welcome to my Notes',
       note: {
         title: '',
         text: '',
@@ -118,19 +120,19 @@ export default {
         changed: false,
         valid: false
       },
-      formDisabled: true,
+      btnDisabled: true,
       sortedBy: 'date',
       notes: [
         {
-          title: 'Visited Hawaii',
-          text: 'I loved the beaches and delicious fresh coconuts',
-          email: 'person@gmail.com',
+          title: 'How to Write a Thank-You Note',
+          text: 'Expressing your gratitude to someone is very satisfying, not only for you but also for the one receiving it.',
+          email: 'my1@gmail.com',
           date: new Date(Date.now())
         },
         {
-          title: 'Visited London',
-          text: 'I loved the beaches and delicious fresh coconuts',
-          email: 'else@i.ua',
+          title: 'Tips On How to Write a Note Template',
+          text: 'As much as we don’t want to accept it, people these days are be coming too lazy to read. If they see a whole page of text, chances are they don’t bother to read it anymore.',
+          email: 'my22@gmail.com',
           date: new Date(Date.now())
         }
       ]
@@ -140,26 +142,26 @@ export default {
     formIsChanged(formState) {
       if (!formState.changed) formState.changed = true;
     },
-    isTitleValid() {
+    titleValidation() {
       this.formIsChanged(this.titleState);
-      const regExp = /^[A-ZА-ЯЁ].{2,}/g;
+      const regExp = /^[A-ZА-ЯЁ].{5,}/g;
       this.titleState.valid = regExp.test(this.note.title);
-      this.isFormDisabled();
+      this.isBtnDisabled();
     },
-    isTextValid() {
+    textValidation() {
       this.formIsChanged(this.textState);
-      const regExp = /([\wа-яё]+\W+){2,}[\wа-яё]+/gi;
+      const regExp = /^[A-ZА-ЯЁ]([\wа-яё]+\W+){5,}[\wа-яё]+/gi;
       this.textState.valid = regExp.test(this.note.text);
-      this.isFormDisabled();
+      this.isBtnDisabled();
     },
-    isEmailValid() {
+    emailValidation() {
       this.formIsChanged(this.emailState);
       const regExp = /([\w-\.]+)(@\w{1,6})(\.\w{2,6})/g;
       this.emailState.valid = regExp.test(this.note.email);
-      this.isFormDisabled();
+      this.isBtnDisabled();
     },
-    isFormDisabled() {
-      this.formDisabled = !(this.titleState.valid && this.textState.valid && this.emailState.valid);
+    isBtnDisabled() {
+      this.btnDisabled = !(this.titleState.valid && this.textState.valid && this.emailState.valid);
     },
     addNote() {
       let { text, title, email } = this.note;
@@ -172,7 +174,7 @@ export default {
       this.titleState.changed = false;
       this.textState.changed = false;
       this.emailState.changed = false;
-      this.formDisabled = true;
+      this.btnDisabled = true;
     },
     removeNote(index) {
       this.notes.splice(index, 1)
@@ -207,7 +209,7 @@ export default {
       let month = date.getMonth();
       let formattedMonth = (month >= 9) ? month + 1 : `0${month + 1}`;
 
-      return `${formattedDay}.${formattedMonth}.${date.getFullYear()}`;
+      return `${formattedDay}-${formattedMonth}-${date.getFullYear()}`;
     }
   }
 }
