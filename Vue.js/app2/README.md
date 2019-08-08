@@ -6,6 +6,9 @@
 # vue inspect > output.js посмотреть конфигурации вэбпак
 # vue inspect > output.js --mode=production посмотреть 
 #конфигурации вэбпак
+#CRUD create read update delete
+#500 ошибка сервера, 404 не существует запрос
+#type cors ерос доменный запрос
 
 
 # app2

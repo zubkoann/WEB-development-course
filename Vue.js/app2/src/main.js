@@ -3,8 +3,8 @@ import App from './App.vue'
 // подключаем scss
 import './assets/scss/style.scss'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false; // не прод
 
-new Vue({
+new Vue({ // создаем рутовый вью инстанс
   render: h => h(App),
-}).$mount('#app')
+}).$mount('#app')  // все равно чтобы создали в обьекте el: '#app'
