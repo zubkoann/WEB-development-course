@@ -18,11 +18,13 @@
         props: ['id'],
         data(){
             return {
+                // нужно обьявить обьектаи так как он будет обьектом 
                 character: {}
             }
         },
         methods: {
             fetchCharacter(id) {
+                // так как дочерний элемент можем обратиться к родителю this.$parent.url 
                 fetch(`${this.$parent.url}people/${id}/`, {
                     method: 'GET'
                 })
@@ -34,6 +36,7 @@
                 this.fetchCharacter(random_id);
             }
         },
+        // используем хук для отрисовки в момент жизненного цикла 
         created(){
             this.fetchCharacter(this.id)
         }
