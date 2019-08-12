@@ -26,8 +26,9 @@
 
     <div class="col-md-12">
       <!-- берем шутки из стора -->
+      <!-- includes если включен в массив es6-->
       <Joke
-        v-for="(joke, index) in $store.state.jokes"
+        v-for="(joke, index) in $store.state.jokes" 
         v-show="checkedTypes.includes(joke.type)"
         :joke="joke"
         :key="index"
