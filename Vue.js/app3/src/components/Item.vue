@@ -3,7 +3,9 @@
         <div class="item-card">
             <div class="card-block">
                 <h4 class="card-title">{{item.name}}</h4>
-                <div v-for="(value, key, index) in item">
+                <div 
+                v-for="(value, key, index) in item" 
+                :key=key >
                     <div v-if="index < 5">
                         <strong>{{key}}</strong>: {{value}}
                     </div>
@@ -16,6 +18,8 @@
 <script>
     export default {
         name: "Item",
+        // в пропс передаем все что используется в родителе
+        // если мы будем менять passedItem то нам надо его менять  и пересохранить в data, только в prop надо переименовать так как когда будем обращаться чере this он не поймет к чему обращаться 
         props: ['passedItem', 'type'],
         data(){
             return {

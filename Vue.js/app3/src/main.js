@@ -13,6 +13,7 @@ Vue.config.productionTip = false
 
 const routes = [
   { path: '/about', component: About },
+  // динамический параметр добовляем
   { path: '/data/:type', component: Data }
 ];
 

@@ -1,5 +1,4 @@
-# npm i vue-route --save
-# app3
+# app4
 
 ## Project setup
 ```
