@@ -4,7 +4,7 @@
                 v-for="(item, index) in items"
                 :key="index"
                 :passed-item="item"
-                :type=type
+                :type="type"
 
         />
     </div>
