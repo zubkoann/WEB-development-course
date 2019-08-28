@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+// добавляем пользователя user
 export default new Vuex.Store({
   state: {
     user: {},
@@ -10,10 +11,12 @@ export default new Vuex.Store({
 
   },
   mutations: {
-    signIn(state, user_payload){
+    // получает state и user_payload в  state.user сохраняет user_payload
+    signIn(state, user_payload) {
       state.user = user_payload
     },
-    signOut(state){
+    //просто очищаем user
+    signOut(state) {
       state.user = {}
     },
     setEvents(state, events_payload) {
@@ -22,15 +25,21 @@ export default new Vuex.Store({
 
   },
   actions: {
-    signIn({commit}, user_payload) {
+    signIn({
+      commit
+    }, user_payload) {
       commit('signIn', user_payload)
     },
 
-    signOut({commit}) {
+    signOut({
+      commit
+    }) {
       commit('signOut')
     },
 
-    setEvents({commit}, events_payload) {
+    setEvents({
+      commit
+    }, events_payload) {
       commit('setEvents', events_payload)
     }
 
