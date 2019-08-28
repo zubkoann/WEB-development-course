@@ -14,11 +14,10 @@
 
     <button class="btn btn-primary" @click.prevent="signIn">Sign In</button>
     <br />
-    <!-- добавляем лин на регистрацию -->
+    <!-- добавляем линк на регистрацию -->
     <router-link to="/signup">Not a user ? Sign Up</router-link>
 
     <br />
-
     {{ error.message }}
   </div>
 </template>
