@@ -16,7 +16,7 @@ Vue.config.productionTip = false
 // надо чтоб пользователь попал либо на одну либо на др страницу 
 // router.push и  router.replace методы роутера котрые бросает на  определ стр
 firebaseApp.auth().onAuthStateChanged(user => {
-  // можем имитить стор , вызываем экшн signIn которому передаем user
+  // можем имитить стор , вызываем экшн signIn которому передаем user чтобы сохранить в стор
   store.dispatch('signIn', user);
   if (user) {
     router.push('/dashboard')

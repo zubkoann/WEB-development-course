@@ -31,6 +31,8 @@ export default {
     AddEvent,
     EventItem
   },
+  // eventRef нужно прицепить eventlistener  в mounted в момент подключения компоненты
+  // получаем данные из БД  и сохраняем в стор
   mounted() {
     eventRef.on("value", snap => {
       const events = [];

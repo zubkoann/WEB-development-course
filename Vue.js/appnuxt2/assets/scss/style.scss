@@ -1,0 +1,25 @@
+body {
+  background: rgb(0, 255, 234)
+}
+
+// стили для анимации при переходе со страницы на страницу
+.page-enter-active,
+.page-leave-active {
+  transition: opacity .5s;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+
+// .custom-enter-active,
+// .custom-leave-active {
+//   transition: opacity .5s;
+// }
+
+// .custom-enter,
+// .custom-leave-to {
+//   opacity: 0;
+// }

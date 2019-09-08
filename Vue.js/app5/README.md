@@ -1,5 +1,10 @@
-#vue create app5 (vuex, router, sass, babel)
-#npm i firebase --save для работы с API #https://console.firebase.google.com/ можно создать сайт или использовать базу данных
+# vue create app5 (vuex, router, sass, babel)
+
+# npm i firebase --save для работы с API #https://console.firebase.google.com/ можно создать сайт или использовать базу данных
+
+# заходим в authentification и нажимаем авторизация по емейл и пароль
+
+# заходим в database и создаем незащищенную БД
 
 # app5
 

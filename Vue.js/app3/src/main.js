@@ -11,10 +11,15 @@ import Data from './components/Data'
 
 Vue.config.productionTip = false
 
-const routes = [
-  { path: '/about', component: About },
+const routes = [{
+    path: '/about',
+    component: About
+  },
   // динамический параметр добовляем
-  { path: '/data/:type', component: Data }
+  {
+    path: '/data/:type',
+    component: Data
+  }
 ];
 
 // создаем инстанс для роутера передаем обьект с роутерами
@@ -23,6 +28,14 @@ const router = new VueRouter({
   mode: 'history'
 });
 // говорим что хотим использовать режим нормальных ссылок а не через хеш
+
+// глобальный миксин может быть опасным дергает каждый компонент
+// Vue.mixin({
+//   mounted() {
+//     console.log('hello from global mixin!')
+//   }
+// })
+const EventBus = new Vue();
 
 new Vue({
   render: h => h(App),

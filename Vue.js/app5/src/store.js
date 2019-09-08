@@ -19,6 +19,7 @@ export default new Vuex.Store({
     signOut(state) {
       state.user = {}
     },
+    // сохраняем то что пришло
     setEvents(state, events_payload) {
       state.events = events_payload
     }

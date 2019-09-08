@@ -13,6 +13,13 @@ export default new Vuex.Store({
     openedModal: false,
     showNotify: false
   },
+  // mutations синхронные вызовы
+  // можно вызвать напрямую в компоненте this.$store.commit('SET_NAME', your_name);
+  // import { mapMutations } from 'vuex';
+  // methods: {
+  // ...mapMutations([
+  //   'increment', // `this.increment()` будет вызывать `this.$store.commit('increment')`
+  // ]),
   mutations: {
     searchBooks(state, payload) {
       state.books = '';
@@ -47,6 +54,12 @@ export default new Vuex.Store({
       state.count = 0
     },
   },
+  // actions асинхронные вызовы
+  // import { mapActions } from 'vuex'
+  //  methods: {
+  // ...mapActions([
+  //   'increment' // проксирует `this.increment()` в `this.$store.dispatch('increment')`
+  // ]),
   actions: {
     searchBooks({
       commit
